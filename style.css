@@ -24,15 +24,11 @@ body{
     box-shadow:  9px 9px 18px #171717,
     -9px -9px 18px #2b2b2b;
 }
-#test{
+#snake{
     position: relative;
     width: 100px;
     height: 100px;
     background: #212121;
     box-shadow: inset 9px 9px 18px #171717,
     inset -9px -9px 18px #2b2b2b;
-    animation: 1s anim;
-}
-@keyframes anim {
-
 }

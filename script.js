@@ -1,35 +1,28 @@
-let test = document.getElementById("test")
-let horizontal = 0;
-let vertical = 0;
-let moveTo = undefined;
-window.setInterval(move = () => {
-    if (moveTo === "ArrowUp" || moveTo === "ArrowDown"){
-        switch (moveTo){
-            case "ArrowUp":
-                vertical -= 1;
-                test.style.top = vertical + 'px'
-                break;
-            case "ArrowDown":
-                vertical += 1;
-                test.style.top = vertical + 'px'
-                break;
-        }
-    }else if (moveTo === "ArrowRight" || moveTo === "ArrowLeft"){
-        switch (moveTo){
-            case "ArrowRight":
-                horizontal += 1;
-                test.style.left = horizontal + 'px'
-                break;
-            case "ArrowLeft":
-                horizontal -= 1;
-                test.style.left = horizontal + 'px'
-                break;
-        }
+let snake = [{x:'',y:''}] // 蛇
+let orientation = undefined // 蛇头朝向
+let test = document.getElementById("snake")
+
+// 蛇的移动
+function move(){
+    switch (orientation){
     }
-},1)
-window.onkeydown = function (ev){
-    console.log(ev.code)
-    moveTo = ev.code
-    console.log(typeof moveTo)
 }
+// 蛇头的朝向
+function moveTo(event){
+    console.log(event)
+    if (event.key === "ArrowUp" && orientation !== "down"){
+        //向上运动
+        orientation = "up"
+    } else if (event.key === "ArrowDown" && orientation !== "up"){
+        //向下运动
+        orientation = "down"
+    } else if (event.key === "ArrowLeft" && orientation !== "right"){
+        //向左运动
+        orientation = "left"
+    } else if (event.key === "ArrowRight" && orientation !== "left"){
+        //向右运动
+        orientation = "right"
+    }
+}
+    window.addEventListener('keydown',moveTo)
 // ArrowUp ArrowRight ArrowDown ArrowLeft
