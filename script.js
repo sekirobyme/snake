@@ -1,10 +1,31 @@
-let snake = [{x:'',y:''}] // 蛇
+let snakeBody = [{x:0,y:0}] // 蛇
 let orientation = undefined // 蛇头朝向
-let test = document.getElementById("snake")
+let snake = document.getElementById("snake")
 
+// 绘制蛇身
+function drawSnake(){
+    for (let i = 0; i <snakeBody.length; i++){
+        snake.style.bottom = (snakeBody[i].y ) + "px"
+        snake.style.left = (snakeBody[i].x ) + "px"
+    }
+    move()
+}
 // 蛇的移动
 function move(){
+    let head = snakeBody[0]
     switch (orientation){
+        case "up":
+            head.y++
+            break;
+        case "down":
+            head.y--
+            break;
+        case "right":
+            head.x++
+            break;
+        case "left":
+            head.x--
+            break;
     }
 }
 // 蛇头的朝向
@@ -25,4 +46,6 @@ function moveTo(event){
     }
 }
     window.addEventListener('keydown',moveTo)
+    window.setInterval(drawSnake,1)
+
 // ArrowUp ArrowRight ArrowDown ArrowLeft
