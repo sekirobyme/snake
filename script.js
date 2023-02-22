@@ -1,9 +1,11 @@
 let snakeBody = [{ x : 50, y : 50 },{ x : 75, y : 50 },{ x : 100, y : 50}]; // 蛇
-let orientation = undefined; // 蛇头朝向
+let orientation = "right"; // 蛇头朝向
 let foodPosition = { x : 20, y : 20 };
 let map = document.getElementById("map");
 
 window.onload = function (){
+    console.log(snakeBody)
+
     drawFood()
 }
 
@@ -21,26 +23,28 @@ function drawSnake(){
     for (let i = 0; i <snakeBody.length; i++){
         let snake = document.createElement("div")
         snake.classList.add("snake");
-        snake.style.bottom = (snakeBody[i].y ) + "px";
-        snake.style.left = (snakeBody[i].x ) + "px";
+        snake.style.bottom = (snakeBody[i].y  ) + "px";
+        snake.style.left = (snakeBody[i].x  ) + "px";
         map.appendChild(snake)
     }
 }
 // 蛇的移动
 function move(){
-    let head = snakeBody[0]
+    let head = {x:snakeBody[0].x,y:snakeBody[0].y}
+    console.log(snakeBody)
     switch (orientation){
         case "up":
-            head.y++
+            head.y+=25
+            console.log(snakeBody)
             break;
         case "down":
-            head.y--
+            head.y-=25
             break;
         case "right":
-            head.x++
+            head.x+=25
             break;
         case "left":
-            head.x--
+            head.x-=25
             break;
     }
     snakeBody.unshift(head)
@@ -74,9 +78,8 @@ function drawFood(){
     food.style.left = foodPosition.x + "px"
     food.style.bottom = foodPosition.y + "px"
     map.appendChild(food)
-    console.log(foodPosition)
 }
     window.addEventListener('keydown',moveTo)
-    window.setInterval(move,1)
+    window.setInterval(move,100)
 
 // ArrowUp ArrowRight ArrowDown ArrowLeft
